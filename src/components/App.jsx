@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes, } from "react-router-dom";
 import { SharedLayout } from "./SharedLayout";
 import { useState, useEffect, } from "react";
-import { Notfound } from "pages/404/404";
+// import { Notfound } from "pages/404/404";
 
 const Home = lazy(()=> import("pages/Home/Home"));
 const SearchBar = lazy(() => import("pages/Movies/Movies"));
@@ -44,7 +44,7 @@ export const App = () => {
             <Route path='cast' element={<Suspense fallback={<h2>Loading... </h2>}><Cast /></Suspense>} />
             <Route path='reviews' element={<Suspense fallback={<h2>Loading... </h2>}><Reviews /></Suspense>}/>
           </Route>
-          <Route path="*" element={<Notfound/>}></Route>
+          <Route path="*" element= {<Suspense fallback={<h2>Loading... </h2>}><Home trends={req} /></Suspense>}></Route>
            </ Route>
         </Routes>
         
