@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, useNavigate , Outlet} from 'react-router-dom';
+import { useParams, Link, useNavigate , Outlet, useLocation} from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import { Flex, View, Box, Li, } from './MovieDetails.styled';
 import { IoChevronBack }  from "react-icons/io5";
@@ -13,9 +13,12 @@ const axios = require('axios');
     const [fullInfo, setFullInfo] = useState({});
      const [genres, setGenres] = useState('');
      const [err, setErr] = useState(null);
-    const nav = useNavigate();
+
+     const nav = useNavigate();
+     const location = useLocation();
+     const toBack = location.state?.from ?? '/movies';
     
-     const funcBack = () => nav(-1);
+    //  const funcBack = () => nav(-1);
     //  const funcHome = () => nav('/');
      
       const funcHome = useCallback(() => {
@@ -49,7 +52,7 @@ const axios = require('axios');
     return (<>
         
         {err === null ? <> <Flex key={fullInfo.id}>
-            <button type='click' onClick={funcBack}><IoChevronBack />Go back</button>
+            <Link  to={toBack}><IoChevronBack />Go back</Link>
             <img src={`https://image.tmdb.org/t/p/w500${fullInfo.poster_path}`} alt="" />
             <div>
                 <h2>{fullInfo.title ?? fullInfo.original_title}</h2>

@@ -26,16 +26,17 @@ img{
         margin-top: 0;
     }
 
-    button{
+   > a{
         position: absolute;
         top: 2px;
         left: 15px;
         display: flex;
     border: 0;
     border-radius: 20px;
-    padding: 4px 12px;
+    padding: 2px 12px;
     border: 1px solid #F6AF9C;
     cursor: pointer;
+    text-decoration: none;
 
     :hover{
      background-color: #8EE0B2;
